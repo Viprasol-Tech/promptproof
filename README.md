@@ -16,6 +16,8 @@ _Built and maintained by **Viprasol Tech**._
 
 </div>
 
+<p align="center"><img src="docs/assets/demo.svg" width="820" alt="promptproof demo — weak vs hardened guard"></p>
+
 ---
 
 `promptproof` is an **offline prompt-injection / jailbreak red-team test harness** for LLM apps. You point it at your own input-handling or guard function — a plain callable `target(user_input: str) -> str` that represents what your app would return — and it fires a battery of known **injection & jailbreak attacks**, then uses configurable **success detectors** to decide which ones got through. You get a scored robustness report: pass/fail per attack, a per-category rollup, and an overall score from 0 to 100.
@@ -25,6 +27,9 @@ It runs with **no network and no LLM calls**. Because the target is a callable *
 ## See it catch a weak guard
 
 `promptproof demo` runs a deliberately insecure `weak_guard` (obeys injected instructions, echoes the compliance marker, leaks its canary) next to a hardened `strong_guard` (anchors its instructions, refuses, strips the canary). The weak one gets shredded; the strong one holds:
+
+<details>
+<summary>Plain-text sample output</summary>
 
 ```text
 promptproof demo — a deliberately weak guard vs a hardened one
@@ -56,6 +61,8 @@ promptproof demo — a deliberately weak guard vs a hardened one
 
 weak_guard scored 0/100  vs  strong_guard 100/100
 ```
+
+</details>
 
 ## 60-second Quickstart
 
